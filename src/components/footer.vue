@@ -31,4 +31,7 @@
 		color: #CCCCCC;
 		
 	}
+	.footer>.router-link-active{
+		color: #f55e14;
+	}
 </style>
