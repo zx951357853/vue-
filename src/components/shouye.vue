@@ -17,7 +17,7 @@
 				<span class="yuan1"></span>
 				<hr class="zc" />
 			</div>
-			<v-chu></v-chu>
+			<v-chu :list='list1'></v-chu>
 			<div class="cy">
 				<hr class="zc" />
 				<span class="yuan"></span>
@@ -45,6 +45,18 @@
 				msg:'首页',
 				list:[
 				'../../static/img/lunbo1.jpg','../../static/img/lunbo2.jpg','../../static/img/lunbo3.jpg','../../static/img/lunbo4.jpg','../../static/img/lunbo5.jpg',
+				],
+				list1:[
+				{name:'女神节',img:'../../static/img/chuangyiqingdan1.jpg'},
+				{name:'创意家居',img:'../../static/img/chuangyiqingdan2.jpg'},
+				{name:'健康卫士',img:'../../static/img/chuangyiqingdan3.jpg'},
+				{name:'个人护理',img:'../../static/img/chuangyiqingdan4.jpg'},
+				{name:'数码配件',img:'../../static/img/chuangyiqingdan5.jpg'},
+				{name:'影音视听',img:'../../static/img/chuangyiqingdan6.jpg'},
+				{name:'酷穿戴',img:'../../static/img/chuangyiqingdan7.jpg'},
+				{name:'酷箱包',img:'../../static/img/chuangyiqingdan8.jpg'},
+				{name:'汽车户外',img:'../../static/img/chuangyiqingdan9.jpg'},
+				{name:'智能家居',img:'../../static/img/chuangyiqingdan10.jpg'}		
 				]
 			}
 		},
@@ -127,6 +139,7 @@
 		position: relative;
 		margin-top: 2.1vw;
 		background: white;
+		margin-bottom: 2.1vw;
 	}
 	.yuan{
 		display: inline-block;
@@ -153,7 +166,5 @@
 		display:inline-block;
 		width: 20.8vw;		
 	}
-	.tu{
-		margin-top: 2.1vw;
-	}
+	
 </style>

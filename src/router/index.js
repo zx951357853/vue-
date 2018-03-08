@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-//import HelloWorld from '@/components/HelloWorld'
 import Shouye from '@/components/shouye'
-import Fenlei from '@/components/fenlei'
-import Find from '@/components/find'
-import Car from '@/components/car'
-import My from '@/components/my'
+import Tuijian from '@/components/fenlei_tuijian.vue'
+const Fenlei =r=>require.ensure([],()=>r(require('@/components/fenlei')),'fenlei')
+const Find =r=>require.ensure([],()=>r(require('@/components/find')),'find')
+const Car =r=>require.ensure([],()=>r(require('@/components/car')),'car')
+const My =r=>require.ensure([],()=>r(require('@/components/my')),'my')
+const Jiaju =r=>require.ensure([],()=>r(require('@/components/fenlei_jiaju.vue')),'fenlei_jiaju')
+const Shuma =r=>require.ensure([],()=>r(require('@/components/fenlei_shuma.vue')),'fenlei_shuma')
+const Zhuangbei =r=>require.ensure([],()=>r(require('@/components/fenlei_zhuangbei.vue')),'fenlei_zhuangbei')
+const Search =r=>require.ensure([],()=>r(require('@/components/search.vue')),'search')
 
 
 
@@ -15,10 +19,22 @@ Vue.use(Router)
 export default new Router({
   routes: [
    	{path:'/shouye',component:Shouye},
-   	{path:'/fenlei',component:Fenlei},
+   	{
+   		path:'/fenlei',
+   		component:Fenlei,
+   		children:[
+   		{path:'tuijian',component:Tuijian},
+   		{path:'jiaju',component:Jiaju},
+   		{path:'shuma',component:Shuma},
+   		{path:'zhuangbei',component:Zhuangbei},
+   		{path:'/fenlei',redirect:'/fenlei/tuijian'}
+   		
+   		]
+   	},
    	{path:'/find',component:Find},
    	{path:'/car',component:Car},   	
    	{path:'/my',component:My},
+   	{path:'/sear',component:Search},  	
    	{path:'/',redirect:'/shouye'}
    	
   ]
