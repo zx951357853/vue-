@@ -22,6 +22,7 @@
 		data(){
 			return{
 				msg:'',
+				num:0,
 				list:['春季踏青','雾霾','车载用品','智能穿戴','鞋子','防盗包','止鼾','蓝牙耳机']	
 			}
 		},
@@ -31,10 +32,18 @@
 				this.$router.go(-1)
 			},
 			handle(){
-				const cc=this.msg;
-				axios.post('/api/search',{name:cc}).then((res)=>{
-					console.log(res)
-				})
+				var arr=[]; 
+				var cc=this.msg;
+//				axios.post('/api/search',{name:cc}).then((res)=>{
+//					console.log(res)
+//				})
+				this.num++
+				const v=this.num;
+//				arr.push(cc);
+//				var str=JSON.stringify(arr);
+				localStorage.setItem([v],cc)
+				var xx=localStorage.getItem([v]);
+				console.log(xx)
 			}
 		},	
 	}

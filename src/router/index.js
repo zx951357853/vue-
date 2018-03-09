@@ -10,8 +10,8 @@ const Jiaju =r=>require.ensure([],()=>r(require('@/components/fenlei_jiaju.vue')
 const Shuma =r=>require.ensure([],()=>r(require('@/components/fenlei_shuma.vue')),'fenlei_shuma')
 const Zhuangbei =r=>require.ensure([],()=>r(require('@/components/fenlei_zhuangbei.vue')),'fenlei_zhuangbei')
 const Search =r=>require.ensure([],()=>r(require('@/components/search.vue')),'search')
-
-
+const Regist =r=>require.ensure([],()=>r(require('@/components/regist.vue')),'regist')
+const Login =r=>require.ensure([],()=>r(require('@/components/login.vue')),'login')
 
 
 Vue.use(Router)
@@ -34,7 +34,9 @@ export default new Router({
    	{path:'/find',component:Find},
    	{path:'/car',component:Car},   	
    	{path:'/my',component:My},
-   	{path:'/sear',component:Search},  	
+   	{path:'/sear',component:Search},
+   	{path:'/regist',component:Regist},
+   	{path:'/login',component:Login},  	 	   	
    	{path:'/',redirect:'/shouye'}
    	
   ]
