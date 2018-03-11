@@ -12,7 +12,7 @@
 			</div>
 		</div>
 		<div class="empty"></div>
-		<p>历史记录</p>
+		<p>{{listData}}</p>
 	</div>
 </template>
 
@@ -23,6 +23,8 @@
 			return{
 				msg:'',
 				num:0,
+				xxx:"",
+				ff:[],
 				list:['春季踏青','雾霾','车载用品','智能穿戴','鞋子','防盗包','止鼾','蓝牙耳机']	
 			}
 		},
@@ -32,20 +34,37 @@
 				this.$router.go(-1)
 			},
 			handle(){
-				var arr=[]; 
+//				var arr=[]; 
 				var cc=this.msg;
-//				axios.post('/api/search',{name:cc}).then((res)=>{
-//					console.log(res)
-//				})
-				this.num++
-				const v=this.num;
+				var xl=this.ff;
+				xl.push(cc);
+				console.log(xl)
+//				var ll=this.xxx+="&"+this.msg
+//				
+//				this.num++
+//				const v=this.num;
 //				arr.push(cc);
-//				var str=JSON.stringify(arr);
-				localStorage.setItem([v],cc)
-				var xx=localStorage.getItem([v]);
-				console.log(xx)
+				var str=JSON.stringify(xl);
+				localStorage.setItem('hh',str)
+				
+				
 			}
-		},	
+		},
+		computed:{
+			listData:function(){
+				var xx=JSON.parse(localStorage.getItem('hh'));
+//				var xx=localStorage.getItem("hh")
+				console.log(xx)
+				return this.ff=xx;
+//				this.xxx=xx;
+//				if(this.xxx=='')
+//				return
+//				else{
+//					return this.xxx.split("&")
+//				}
+//				
+			}
+		}
 	}
 </script>
 
