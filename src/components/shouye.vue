@@ -28,17 +28,18 @@
 			<v-baokuan></v-baokuan>
 		</div>
 		
-		<v-nav class='zc'></v-nav>
+		<v-nav></v-nav>
 		
 	</div>
 	
 </template>
 
 <script>
-	import Foo from './footer.vue'
+	
 	import Lunbo from './lunbo.vue'
 	import Chu from './chuangyiqingdan.vue'
 	import Baokuan from './chuangyibaokuan.vue'
+	import Foo from './footer.vue'
 	export default {
 		data (){
 			return {

@@ -36,6 +36,19 @@
 						pwd=this.mima;
 					axios.post('/api/login',{name,pwd}).then((res)=>{
 						console.log(res)
+						var bb=res.data.code
+						if(bb==5){
+						document.cookie="usename="+name;					
+						this.$router.go(0)
+						};
+						if(bb==3){
+							alert('账号错误')
+							return
+						};
+						if(bb==4){
+							alert('密码错误')
+							return
+						}
 					})
 				}else{
 					alert('请输入账号和密码')

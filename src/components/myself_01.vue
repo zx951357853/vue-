@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<div class="x01">
-			<div class="x01_01" v-for='(i,index) in list' :key='index'>
-					<span>{{i}}</span>
+			<div class="x01_01" v-for='(i,index) in list' :key='i.id' @click="handle(i)">
+					<span>{{i.name}}</span>
 					<img src="../../static/img/you.jpg"/>
 			</div>
 			
@@ -13,7 +13,24 @@
 
 <script>
 	export default{
-		props:['list']
+		props:['list'],
+		methods:{
+			handle(i){
+				console.log(i.id)
+				if(i.id=='list02_05'){
+					//获取cookie中用户名
+				var arr,reg=new RegExp("(^| )usename=([^;]*)(;|$)");
+					if(arr=document.cookie.match(reg))
+					var kk=unescape(arr[2]);
+					//清除cookie
+					var exp = new Date();
+					exp.setTime(exp.getTime() - 1);
+					document.cookie="usename="+kk+";expires="+exp.toGMTString();
+					//刷新网页
+					this.$router.go(0)
+				}
+			}
+		}
 	}
 </script>
 
@@ -25,9 +42,10 @@
 		border-bottom: 1px solid #CCCCCC;
 		background: white;
 	}
-	.x01>div:nth-last-child{
-		border-bottom: none;
-	}
+	/*.x01>div:nth-last-child{
+		border: none;
+		z-index: 999;
+	}*/
 	.x01 .x01_01>span{
 		height: 10.7vw;
 		line-height: 10.7vw;

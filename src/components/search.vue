@@ -13,16 +13,20 @@
 		</div>
 		<div class="empty"></div>
 		<p>历史记录</p>
+		<div class="jilu">
+			<span v-for='(i,index) in lit' @click="had(index)">{{i}}</span>
+		</div>
 	</div>
 </template>
-
 <script>
 	import axios from 'axios'
 	export default{
 		data(){
 			return{
 				msg:'',
+				arr:[],
 				num:0,
+				listed:[],
 				list:['春季踏青','雾霾','车载用品','智能穿戴','鞋子','防盗包','止鼾','蓝牙耳机']	
 			}
 		},
@@ -31,21 +35,60 @@
 			fanhui(){
 				this.$router.go(-1)
 			},
-			handle(){
-				var arr=[]; 
-				var cc=this.msg;
-//				axios.post('/api/search',{name:cc}).then((res)=>{
-//					console.log(res)
-//				})
-				this.num++
-				const v=this.num;
-//				arr.push(cc);
-//				var str=JSON.stringify(arr);
-				localStorage.setItem([v],cc)
-				var xx=localStorage.getItem([v]);
-				console.log(xx)
+			handle(msg){
+//				this.$router.go(0);				
+				var cc=JSON.parse(localStorage.getItem('name'));
+				console.log(cc)
+				if(cc==null||cc.length==0){
+					if(this.msg==''){
+						return
+					}else{
+						this.arr.push(this.msg);
+						console.log(this.arr)
+						localStorage.setItem('name',JSON.stringify(this.arr));
+						return
+					}		
+				}
+				if(cc.length){
+					var msgs=this.msg;
+					if(this.msg==''){
+						return
+					}else{
+						for(var i=0;i<cc.length;i++){
+							if(cc[i]==msgs){
+									return
+							}else{
+								cc.push(msgs);
+								console.log(cc)
+								localStorage.setItem('name',JSON.stringify(cc));
+								return
+							}
+						}					
+					}					
+				}								
+			},
+			had(index){
+				console.log(index)
+				var bb=JSON.parse(localStorage.getItem('name'))		
+				if(bb){
+					for(var i=0;i<bb.length;i++){
+						if(i==index){
+							bb.splice(i,1)
+						}
+					}
+					localStorage.setItem('name',JSON.stringify(bb));
+					
+				}
 			}
-		},	
+		},
+		computed:{
+			lit(){
+				var bb=JSON.parse(localStorage.getItem('name'))		
+				if(bb){
+					return bb
+				}
+			}									
+		}
 	}
 </script>
 
@@ -118,5 +161,8 @@
 		width: 100%;
 		height: 4.8vw;
 		background: #f1f1f1;
+	}
+	.jilu>span{
+		padding: 0 5px;
 	}
 </style>

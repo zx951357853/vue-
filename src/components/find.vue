@@ -1,7 +1,7 @@
 <template>
 <div class="xx">
 	<div class="zx">{{msg}}</div>
-	<v-navx class='zc'></v-navx>
+	<v-navx ></v-navx>
 </div>
 	
 </template>

@@ -15,7 +15,7 @@
 				<router-view></router-view>
 			</div>
 		</div>
-		<v-navz class='zc'></v-navz>
+		<v-navz></v-navz>
 	</div>
 	
 </template>

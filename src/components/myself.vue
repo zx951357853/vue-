@@ -6,7 +6,7 @@
 				<img src="../../static/img/down_app.gif"/>
 				<span>普通会员</span>
 			</div>
-			<p class="num">18381673673</p>
+			<p class="num">{{num}}</p>
 			<div class="jifen">
 				<p>积分：<span>0</span></p>
 				<p>积分商城</p>				
@@ -18,15 +18,14 @@
 				<span>查看所有订单</span>
 			</div>
 			<div class="zz">
-				<dl v-for='i in list'>
+				<dl v-for='i in list' :key=i.id>
 					<dt><img :src="i.img"/></dt>
 					<dd>{{i.name}}</dd>
 				</dl>
 			</div>
 			<div class="en"></div>
 			<v-my01 :list='list01'></v-my01>
-			<v-my01 :list='list02'></v-my01>
-			
+			<v-my01 :list='list02'></v-my01> 	
 		</div>
 		
 	</div>
@@ -38,21 +37,34 @@
 		data(){
 			return{
 				list:[
-				{name:'待付款',img:'../../static/img/order01.png'},
-				{name:'待发货',img:'../../static/img/order02.png'},
-				{name:'待收货',img:'../../static/img/order03.png'},
-				{name:'待评价',img:'../../static/img/order04.png'}				
+				{name:'待付款',img:'../../static/img/order01.png',id:'list_01'},
+				{name:'待发货',img:'../../static/img/order02.png',id:'list_02'},
+				{name:'待收货',img:'../../static/img/order03.png',id:'list_03'},
+				{name:'待评价',img:'../../static/img/order04.png',id:'list_04'}				
 				],
 				list01:[
-				'我的优惠券','积分商城','我的收藏'
+					{name:'我的优惠券',id:'list01_01'},
+					{name:'积分商城',id:'list01_02'},
+					{name:'我的收藏',id:'list01_03'}							
 				],
 				list02:[
-					'在线客服','帮助中心','联系酷菠萝','关于酷菠萝','退出'
-				]
+					{name:'在线客服',id:'list02_01'},
+					{name:'帮助中心',id:'list02_02'},
+					{name:'联系酷菠萝',id:'list02_03'},
+					{name:'关于酷菠萝',id:'list02_04'},
+					{name:'退出',id:'list02_05'}				
+				],
+				num:''
 			}
 		},
 		components:{
 			'v-my01':myself_01
+		},
+		beforeMount(){
+			var arr,reg=new RegExp("(^| )usename=([^;]*)(;|$)");
+				if(arr=document.cookie.match(reg))
+				var kk=unescape(arr[2]);
+				this.num=kk
 		}
 	}
 </script>

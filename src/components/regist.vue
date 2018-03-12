@@ -64,7 +64,11 @@
 					const usename=this.sj;
 					const pwd=this.msg;
 					axios.post('/api/regist',{usename,pwd}).then((res)=>{
-						console.log(res)
+						var cc=res.data.code;
+						if(cc==2){
+						document.cookie="usename="+usename;
+						this.$router.replace({path:'/my',query:{name:usename}})
+						}
 					})
 				}
 			}
