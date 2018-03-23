@@ -36,54 +36,60 @@
 				this.$router.go(-1)
 			},
 			handle(msg){
-//				this.$router.go(0);				
-				var cc=JSON.parse(localStorage.getItem('name'));
-				console.log(cc)
-				if(cc==null||cc.length==0){
-					if(this.msg==''){
-						return
-					}else{
-						this.arr.push(this.msg);
-						console.log(this.arr)
-						localStorage.setItem('name',JSON.stringify(this.arr));
-						return
-					}		
-				}
-				if(cc.length){
-					var msgs=this.msg;
-					if(this.msg==''){
-						return
-					}else{
-						for(var i=0;i<cc.length;i++){
-							if(cc[i]==msgs){
+				var arr,reg=new RegExp("(^| )usename=([^;]*)(;|$)");
+				if(arr=document.cookie.match(reg))
+				var kk=unescape(arr[2]);
+				console.log(kk)
+				if(kk&&kk!=''){
+					var cc=JSON.parse(localStorage.getItem([kk]));
+					console.log(cc)
+					if(cc==null||cc.length==0){
+						if(this.msg==''){
+							return
+						}else{
+							this.arr.push(this.msg);
+							console.log(this.arr)
+							localStorage.setItem([kk],JSON.stringify(this.arr));
+							return
+						}		
+					}
+					if(cc.length){
+						var msgs=this.msg;
+						if(this.msg==''){
+							return
+						}else{
+							for(var i=0;i<cc.length;i++){
+								if(cc[i]==msgs){
+										return
+								}else{
+									cc.push(msgs);
+									console.log(cc)
+									localStorage.setItem([kk],JSON.stringify(cc));
 									return
-							}else{
-								cc.push(msgs);
-								console.log(cc)
-								localStorage.setItem('name',JSON.stringify(cc));
-								return
-							}
+								}
+							}					
 						}					
-					}					
-				}								
+					}				
+				}			
+								
 			},
 			had(index){
 				console.log(index)
-				var bb=JSON.parse(localStorage.getItem('name'))		
+				var bb=JSON.parse(localStorage.getItem([kk]))		
 				if(bb){
 					for(var i=0;i<bb.length;i++){
 						if(i==index){
 							bb.splice(i,1)
 						}
 					}
-					localStorage.setItem('name',JSON.stringify(bb));
+					localStorage.setItem([kk],JSON.stringify(bb));
 					
 				}
 			}
 		},
 		computed:{
 			lit(){
-				var bb=JSON.parse(localStorage.getItem('name'))		
+				var bb=JSON.parse(localStorage.getItem([kk]))		
 				if(bb){
 					return bb
 				}
